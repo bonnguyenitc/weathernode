@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+    <a href="/"><h1 style="text-align:center">Weather App</h1></a>
+    <h3 style="text-align:center">Weather today and the next 15 days</h3>
+    <div class="container">
+        <form style="display: grid" action="/weather" method="GET">
+            <div class="form-group">
+              <input type="text" class="form-control" id="txtcity" name="txtcity" placeholder="Enter city"  value="<%=weather?city:''%>" required>
+            </div>
+            <div class="form-group">
+                <input type="date" class="form-control" id="txtdate" name="txtdate"  value="<%=weather?date:''%>" required>
+              </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+            <% if(error) {%>
+                <div class="alert alert-danger" style="margin-top: 30px">
+                    <%=error%>
+                </div>
+            <%}%>
+        </form>
+        <% if(weather) { %>
+        <div style="margin-top: 30px; border: 1px solid blue;padding: 15px; border-radius: 5px; text-align: center">
+            <img src="https://www.weatherbit.io/static/img/icons/<%=weather.weather.icon%>.png" >
+            <h2><%=weather.weather.description%></h2>
+            <h1>City : <%=city%></h1>
+            <h1>Temp : <%=weather.temp%> °C</h1>
+            <h1>Country : <%=country%></h1>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
